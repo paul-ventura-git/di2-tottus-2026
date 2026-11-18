@@ -1,24 +1,23 @@
 
 import { useState } from "react";
-import { products } from "../../data/R30-query-productos-tecnologia.js";
+// import { products } from "../../data/R30-query-productos-tecnologia.js";
 
-const R30CarouselLoMejorenTecnologia = ({ props = [] }) => {
-  console.log("props", props);
+const R30CarouselLoMejorenTecnologia = (props) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const ITEMS_PER_PAGE = 5;
 
-  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(props.productos.length / ITEMS_PER_PAGE);
 
-  const visibleProducts = products.slice(
+  const visibleProducts = props.productos.slice(
     currentIndex,
     currentIndex + ITEMS_PER_PAGE
   );
 
   const next = () => {
     setCurrentIndex((prev) =>
-      prev + ITEMS_PER_PAGE >= products.length
+      prev + ITEMS_PER_PAGE >= props.productos.length
         ? 0
         : prev + ITEMS_PER_PAGE
     );
@@ -45,7 +44,7 @@ const R30CarouselLoMejorenTecnologia = ({ props = [] }) => {
           <button
             className="btn btn-outline-secondary btn-sm"
             onClick={previous}
-            disabled={products.length <= ITEMS_PER_PAGE}
+            disabled={props.productos.length <= ITEMS_PER_PAGE}
           >
             &#10094;
           </button>
@@ -53,7 +52,7 @@ const R30CarouselLoMejorenTecnologia = ({ props = [] }) => {
           <button
             className="btn btn-outline-secondary btn-sm"
             onClick={next}
-            disabled={products.length <= ITEMS_PER_PAGE}
+            disabled={props.productos.length <= ITEMS_PER_PAGE}
           >
             &#10095;
           </button>
